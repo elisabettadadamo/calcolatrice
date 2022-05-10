@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/style.css">
+    <title>La mia calcolatrice</title>
+</head>
+<body>
+    <h1 id="titolo">La mia calcolatrice in Javascript</h1>
+    <div id="calcolatrice">
+        <input type="text" id="display">
+        <div id="tastierino">
+
+            <div id="1" onclick="prendiDato(this)">1</div>
+            <div id="2" onclick="prendiDato(this)">2</div>
+            <div id="3" onclick="prendiDato(this)">3</div>
+            <div id="4" onclick="prendiDato(this)">4</div>
+            <div id="5" onclick="prendiDato(this)">5</div>
+            <div id="6" onclick="prendiDato(this)">6</div>
+            <div id="7" onclick="prendiDato(this)">7</div>
+            <div id="8" onclick="prendiDato(this)">8</div>
+            <div id="9" onclick="prendiDato(this)">9</div>
+            <div id="0" onclick="prendiDato(this)">0</div>
+            <div id="." onclick="prendiDato(this)">.</div>
+            <div id="+" onclick="prendiDato(this)">+</div>
+            <div id="-" onclick="prendiDato(this)">-</div>
+            <div id="*" onclick="prendiDato(this)">x</div>
+            <div id="/" onclick="prendiDato(this)">/</div> 
+            <div id="=" class="btn" onclick="totale()">=</div>
+            <div id="c" onclick="resetCalcolatrice()">C</div> 
+        </div>
+
+  
+    </div>
+    <script>
+
+        function isSymbol(s){
+            var accettati = ['.','+','-','/','*']
+            if(accettati.includes(s)){
+                return true;
+
+            }else{
+                return false;
+            }
+        }
+
+    function prendiDato(nunzio){
+        let display = document.getElementById('display')
+        let numero = nunzio.id 
+        let attualeValore = display.value;
+
+
+
+        if(!isSymbol(numero)){
+            display.value += numero
+        }else{
+             let ultimoCarattere = display.value[display.value.length -1]
+             if(isSymbol(ultimoCarattere)){
+                 display.value = display.value.replace(ultimoCarattere, numero)
+
+             }else{
+                 display.value += numero
+             }
+        }
+         
+    
+        //display.value += numero
+
+    
+
+
+
+    }
+
+    function resetCalcolatrice(){
+        document.getElementById('display').value = ''
+    }
+
+    function totale(){
+        let display = document.getElementById('display')
+        display.value = eval(display.value)
+    }
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
